@@ -1,0 +1,87 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Package.Localization
+{
+    public class MessageKeys
+    {
+        public static readonly string NotFoundRepositoryByName = "notFoundRepositoryByName";
+        public static readonly string NotUniqueRepositoryName = "notUniqueRepositoryName";
+        public static readonly string PackageDirNotExist = "packageDirNotExist";
+        public static readonly string EntitiesBuildProgress = "entitiesBuildProgress";
+        public static readonly string EntitiesCheckProgress = "entitiesCheckProgress";
+        public static readonly string NotRegestredCheck = "notRegestredCheck";
+        public static readonly string NotRegestredRepo = "notRegestredRepo";
+        public static readonly string MaxLengthNotLargeMin = "maxLengthNotLargeMin";
+        public static readonly string NotSetProperty = "notSetProperty";
+        public static readonly string NotFoundDictionary = "notFoundDictionary";
+        public static readonly string NotContainsKeyInDictionary = "notContainsKeyInDictionary";
+        public static readonly string NotFoundParameterInEntity = "notFoundParameterInEntity";
+        public static readonly string NotRegestredCondition = "notRegestredCondition";
+        public static readonly string NotFoundParameterInAnyEntity = "notFoundParameterInAnyEntity";
+        public static readonly string NotFoundParameterInAllEntities = "notFoundParameterInAllEntities";
+        public static readonly string StringNotMathRegexPattern = "stringNotMathRegexPattern";
+        public static readonly string CantConvertRegexTemplateToPattern = "CantConvertRegexTemplateToPattern";
+        public static readonly string NotFoundRegexTemplate = "notFoundRegexTemplate";
+        public static readonly string NotFoundStaticParameter = "notFoundStaticParameter";
+        public static readonly string NotFoundParameterInParameterBuilder = "notFoundParameterInParameterBuilder";
+        public static readonly string NotFoundParameterTemplate = "notFoundParameterTemplate";
+        public static readonly string CouldNotSaveUserConfiguration = "couldNotSaveUserConfiguration";
+        public static readonly string CouldNotExtractUserConfiguration = "couldNotExtractUserConfiguration";
+        public static readonly string IncorrectUserConfigurationContent = "incorrectUserConfigurationContent";
+        public static readonly string ConfigurationAlreadyExist = "configurationAlreadyExist";
+        public static readonly string ProjectConfigurationAlreadyExist = "projectConfigurationAlreadyExist";
+        public static readonly string ConfigurationNotExist = "configurationNotExist";
+        public static readonly string ProjectConfigurationNotExist = "projectConfigurationNotExist";
+        public static readonly string ConfigurationNotReferToProjectConfig = "configurationNotReferToProjectConfig";
+        public static readonly string CouldNotRemoveConfiguration = "couldNotRemoveConfiguration";
+        public static readonly string CouldNotAddConfiguration = "couldNotAddConfiguration";
+        public static readonly string CouldNotRemoveProjectConfig = "couldNotRemoveProjectConfig";
+        public static readonly string CouldNotAddProjectConfig = "couldNotAddProjectConfig";
+        public static readonly string CouldNotReturnConfiguration = "couldNotReturnConfiguration";
+        public static readonly string CouldNotReturnProjectConfig = "couldNotReturnProjectConfig";
+        public static readonly string CouldNotCheckExistConfig = "couldNotCheckExistConfig";
+        public static readonly string CouldNotCheckExistProjectConfig = "couldNotCheckExistProjectConfig";
+        public static readonly string CouldNotReturnConfigurations = "couldNotReturnConfigurations";
+        public static readonly string CouldNotReturnProjectConfigs = "couldNotReturnProjectConfigs";
+        public static readonly string NotFoundEntityBuild = "notFoundEntityBuild";
+        public static readonly string IncorrectSectionStruct = "incorrectSectionStruct";
+        public static readonly string NotFoundParameterCheck = "notFoundParameterCheck";
+        public static readonly string NotRegestredExtracter = "notRegestredExtracter";
+        public static readonly string NotFoundMatrhxDicts = "notFoundMatrhxDicts";
+        public static readonly string NotFoundEntityChecks = "notFoundEntityChecks";
+        public static readonly string NotFoundParameterTemplates = "notFoundParameterTemplates";
+        public static readonly string NotFoundRegexTemplates = "notFoundRegexTemplates";
+        public static readonly string NotFoundSimpleDiscts = "notFoundSimpleDiscts";
+        public static readonly string NotFoundStaticParameters = "notFoundStaticParameters";
+        public static readonly string NotConfigurationSelected = "notConfigurationSelected";
+        public static readonly string NotFoundSectionRule = "notFoundSectionRule";
+        public static readonly string NotFoundSectionDict = "notFoundSectionDict";
+        public static readonly string NotFoundSectionCheck = "notFoundSectionCheck";
+        public static readonly string DirectoryNotExist = "directoryNotExist";
+        public static readonly string FileNotExist = "fileNotExist";
+        public static readonly string ParameterNotIdentityInENtities = "parameterNotIdentityInENtities";
+        public static readonly string IncorrectTypeCustomParameter = "incorrectTypeCustomParameter";
+        public static readonly string IncorrectLoadlistRowFilter = "incorrectLoadlistRowFilter";
+        public static readonly string IncorrectLoadlistColumnsFilter = "incorrectLoadlistColumnsFilter";
+        public static readonly string NotFoundCustomParameterInEntity = "notFoundCustomParameter";
+        public static readonly string CouldNotMapLoadlistRow = "couldNotMapLoadlistRow";
+        public static readonly string IncorrectValueInLoadlistColumn = "incorrectValueInLoadlistColumn";
+        public static readonly string ExcessLoadlistRow = "excessLoadlistRow";
+        public static readonly string CouldNotMatchLoadlistRowWithEntity = "couldNotMatchLoadlistRowWithEntity";
+        public static readonly string IdentificationColumnsCountMustBeLarge0 = "identificationColumnsCountMustBeLarge0";
+        public static readonly string NotFoundLoadlistFilter = "notFoundLoadlistFilter";
+        public static readonly string CouldNotExtractParamValueForColumn = "couldNotExtractParamValueForColumn";
+        public static readonly string EntityNotMatchAnyLoadlistRowBuildRule = "entityNotMatchAnyLoadlistRowBuildRule";
+        public static readonly string NotFoundLoadlistFile = "notFoundLoadlistFile";
+        public static readonly string NotFoundMatchStrategyForCheck = "notFoundMatchStrategyForCheck";
+        public static readonly string NotFoundMatchStrategyForExtract = "notFoundMatchStrategyForExtract";
+        public static readonly string NotFoundMatchStrategyForCondition = "notFoundMatchStrategyForCondition";
+        public static readonly string NotFoundLoadlistColumn = "notFoundLoadlistColumn";
+        public static readonly string CouldNotMapLoadlistRowToEntity = "couldNotMapLoadlistRowToEntity";
+        public static readonly string CouldNotFilterEntitiesInExtract = "couldNotFilterEntitiesInExtract";
+        public static readonly string CouldNotSelectParametersInExtract = "couldNotSelectParametersInExtract";
+        public static readonly string CouldNotExtractParameters = "couldNotExtractParameters";
+    }
+}

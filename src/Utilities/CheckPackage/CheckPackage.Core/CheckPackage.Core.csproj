@@ -1,0 +1,22 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\Package.Building\Package.Building.csproj" />
+    <ProjectReference Include="..\..\..\Core\Package.Localization\Package.Localization.csproj" />
+    <ProjectReference Include="..\..\..\Core\Package.Resourcing\Package.Resourcing.csproj" />
+    <ProjectReference Include="..\..\..\Core\Package.Validation\Package.Validation.csproj" />
+  </ItemGroup>
+
+</Project>

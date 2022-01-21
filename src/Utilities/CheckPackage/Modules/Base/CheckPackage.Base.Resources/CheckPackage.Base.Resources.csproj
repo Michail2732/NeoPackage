@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\..\Core\Package.Localization\Package.Localization.csproj" />
+    <ProjectReference Include="..\..\..\..\..\Core\Package.Resourcing\Package.Resourcing.csproj" />
+    <ProjectReference Include="..\..\..\CheckPackage.Core\CheckPackage.Core.csproj" />
+    <ProjectReference Include="..\CheckPackage.Base.Checks\CheckPackage.Base.Checks.csproj" />
+    <ProjectReference Include="..\CheckPackage.Base.Conditions\CheckPackage.Base.Conditions.csproj" />
+    <ProjectReference Include="..\CheckPackage.Base.Configuration\CheckPackage.Base.Configuration.csproj" />
+    <ProjectReference Include="..\CheckPackage.Base.Extracters\CheckPackage.Base.Extracters.csproj" />
+  </ItemGroup>
+
+</Project>

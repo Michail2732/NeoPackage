@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\CheckPackage.Core\CheckPackage.Core.csproj" />
+    <ProjectReference Include="..\CheckPackage.Base.Checks\CheckPackage.Base.Checks.csproj" />
+    <ProjectReference Include="..\CheckPackage.Base.Conditions\CheckPackage.Base.Conditions.csproj" />
+    <ProjectReference Include="..\CheckPackage.Base.Configuration\CheckPackage.Base.Configuration.csproj" />
+    <ProjectReference Include="..\CheckPackage.Base.Extracters\CheckPackage.Base.Extracters.csproj" />
+    <ProjectReference Include="..\CheckPackage.Base.Resources\CheckPackage.Base.Resources.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\CheckPackage.Core\CheckPackage.Core.csproj" />
+    <ProjectReference Include="..\CheckPackage.DownloadSheet.Checks\CheckPackage.DownloadSheet.Checks.csproj" />
+    <ProjectReference Include="..\CheckPackage.DownloadSheet.Conditions\CheckPackage.DownloadSheet.Conditions.csproj" />
+    <ProjectReference Include="..\CheckPackage.DownloadSheet.Configuration\CheckPackage.DownloadSheet.Configuration.csproj" />
+    <ProjectReference Include="..\CheckPackage.DownloadSheet.Extracts\CheckPackage.DownloadSheet.Extracts.csproj" />
+    <ProjectReference Include="..\CheckPackage.DownloadSheet.Resources\CheckPackage.DownloadSheet.Resources.csproj" />
+    <ProjectReference Include="..\CheckPackage.DownloadSheet\CheckPackage.DownloadSheet.csproj" />
+  </ItemGroup>
+
+</Project>
