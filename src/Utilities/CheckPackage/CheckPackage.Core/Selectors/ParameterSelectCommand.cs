@@ -6,12 +6,12 @@ namespace CheckPackage.Core.Selectors
 {
     public abstract class ParameterSelectCommand
     {
-        public IList<Parameter> Select(IEnumerable<PackageEntity> entities, PackageContext context)
+        public IEnumerable<Parameter> Select(IEnumerable<Entity_> entities, PackageContext context)
         {
             return InnerSelect(entities, context);
         }
 
-        protected abstract IList<Parameter> InnerSelect(IEnumerable<PackageEntity> entities, PackageContext context);
+        protected abstract IEnumerable<Parameter> InnerSelect(IEnumerable<Entity_> entities, PackageContext context);
     }    
     
 }

@@ -1,4 +1,5 @@
-﻿using Package.Abstraction.Entities;
+﻿using CheckPackage.Core.Entities;
+using Package.Abstraction.Entities;
 using Package.Abstraction.Services;
 using System;
 using System.Collections.Generic;
@@ -21,10 +22,16 @@ namespace CheckPackage.Core.Output
             return command.Output(package, context);
         }
 
-        public Result Output(PackageEntity entity, PackageEntityOutputCommand command)
+        public Result Output(Entity_ entity, EntityOutputCommand command)
         {
             var context = _contextBuilder.Build();
             return command.Output(entity, context);
+        }
+
+        public Result Output(Parameter parameter, ParameterOutputCommand command)
+        {
+            var context = _contextBuilder.Build();
+            return command.Output(parameter, context);
         }
     }
 }

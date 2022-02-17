@@ -8,10 +8,10 @@ namespace CheckPackage.Core.Selectors
 {
     public interface ISelectorService
     {
-        IList<Parameter> Select(IEnumerable<PackageEntity> entities, ParameterSelectCommand selector);
-        IList<Parameter> Select(IEnumerable<PackageEntity> entities, IEnumerable<ParameterSelectCommand> selectors);
-        IList<Parameter> Select(PackageEntity entity, ParameterSelectCommand selector);
-        IList<Parameter> Select(PackageEntity entity, IEnumerable<ParameterSelectCommand> selector);
+        IEnumerable<Parameter> Select(IEnumerable<Entity_> entities, ParameterSelectCommand selector);
+        IEnumerable<Parameter> Select(IEnumerable<Entity_> entities, IEnumerable<ParameterSelectCommand> selectors);
+        IEnumerable<Parameter> Select(Entity_ entity, ParameterSelectCommand selector);
+        IEnumerable<Parameter> Select(Entity_ entity, IEnumerable<ParameterSelectCommand> selector);
 
     }
 }

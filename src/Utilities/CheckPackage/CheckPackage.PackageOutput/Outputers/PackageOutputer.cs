@@ -1,5 +1,5 @@
 ﻿using CheckPackage.Core.Conditions;
-using CheckPackage.PackageOutput.Resources;
+using CheckPackage.PackageOutput.Rules;
 using Package.Abstraction.Entities;
 using Package.Output.Outputers;
 using System;
@@ -22,8 +22,8 @@ namespace CheckPackage.PackageOutput.Outputers
         public EntityStateResult Output(Package_ package, PackageContext context)
         {
             StringBuilder sb = new StringBuilder();
-            State resultState = State.success;
-            var packageRules = context.ResourceProvider.GetStorage<PackageOutputRuleResource, string>().Get();
+            Critical resultState = Critical.notcritical;
+            var packageRules = context.RepositoryProvider.GetRepository<PackageOutputRule, string>().Get();
             foreach (var entityRule in packageRules)
             {
                 if (entityRule.Conditions == null || _conditionService.Resolve(package, entityRule.Conditions))
@@ -43,8 +43,8 @@ namespace CheckPackage.PackageOutput.Outputers
         {
             ct.ThrowIfCancellationRequested();
             StringBuilder sb = new StringBuilder();
-            State resultState = State.success;
-            var packageRules = await context.ResourceProvider.GetStorage<PackageOutputRuleResource, string>().GetAsync(a => true, ct);
+            Critical resultState = Critical.notcritical;
+            var packageRules = await context.RepositoryProvider.GetRepository<PackageOutputRule, string>().GetAsync(a => true, ct);
             foreach (var entityRule in packageRules)
             {
                 ct.ThrowIfCancellationRequested();

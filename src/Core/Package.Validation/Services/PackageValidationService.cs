@@ -13,14 +13,14 @@ namespace Package.Validation.Services
     public class PackageValidationService : IPackageValidationService
     {
         private readonly IPackageValidator _packageValidator;
-        private readonly IPackageEntityValidator _packageEntityValidator;
-        private readonly IEntityParameterValidator _parameterValidator;
-        private readonly IEntityUserParameterValidator _userParameterValidator;
+        private readonly IEntityValidator _packageEntityValidator;
+        private readonly IParameterValidator _parameterValidator;
+        private readonly IUserParameterValidator _userParameterValidator;
         private readonly IPackageContextBuilder _contextBuilder;
 
         public PackageValidationService(IPackageValidator packageValidator, 
-            IPackageEntityValidator packageEntityValidator, IEntityParameterValidator parameterValidator, 
-            IEntityUserParameterValidator userParameterValidator, IPackageContextBuilder contextBuilder)
+            IEntityValidator packageEntityValidator, IParameterValidator parameterValidator, 
+            IUserParameterValidator userParameterValidator, IPackageContextBuilder contextBuilder)
         {
             _packageValidator = packageValidator ?? throw new ArgumentNullException(nameof(packageValidator));
             _packageEntityValidator = packageEntityValidator ?? throw new ArgumentNullException(nameof(packageEntityValidator));
@@ -36,8 +36,8 @@ namespace Package.Validation.Services
             try
             {
                 PackageContext context = _contextBuilder.Build();
-                PackageEntityStackEnumerable entityEnumerable = new PackageEntityStackEnumerable(package.Entities);
-                List<PackageEntityReport> entitiesReports = new List<PackageEntityReport>();
+                EntityStackEnumerable entityEnumerable = new EntityStackEnumerable(package.Entities);
+                List<EntityReport> entitiesReports = new List<EntityReport>();
                 foreach (var entity in entityEnumerable)                
                 {                    
                     var entityResult = _packageEntityValidator.Validate(entity, context);
@@ -53,7 +53,7 @@ namespace Package.Validation.Services
                         var userParameterResult = _userParameterValidator.Validate(userParameter.Value, context);
                         userParameterResults.Add(userParameterResult);
                     }
-                    entitiesReports.Add(new PackageEntityReport(parameterResults, userParameterResults, entityResult));
+                    entitiesReports.Add(new EntityReport(parameterResults, userParameterResults, entityResult));
                     if (OnEntityValidated(entitiesReports.Last())) break;                    
                 }
                 var packageResult = _packageValidator.Validate(package, context);
@@ -67,8 +67,8 @@ namespace Package.Validation.Services
             try
             {
                 PackageContext context = _contextBuilder.Build();
-                PackageEntityStackEnumerable entityEnumerable = new PackageEntityStackEnumerable(package.Entities);
-                List<PackageEntityReport> entitiesReports = new List<PackageEntityReport>();
+                EntityStackEnumerable entityEnumerable = new EntityStackEnumerable(package.Entities);
+                List<EntityReport> entitiesReports = new List<EntityReport>();
                 foreach (var entity in entityEnumerable)
                 {
                     ct.ThrowIfCancellationRequested();                                   
@@ -85,7 +85,7 @@ namespace Package.Validation.Services
                         var userParameterResult = await _userParameterValidator.ValidateAsync(userParameter.Value, context, ct);
                         userParameterResults.Add(userParameterResult);
                     }
-                    entitiesReports.Add(new PackageEntityReport(parameterResults, userParameterResults, entityResult));
+                    entitiesReports.Add(new EntityReport(parameterResults, userParameterResults, entityResult));
                     if (OnEntityValidated(entitiesReports.Last())) break;                    
                 }
                 var packageResult = await _packageValidator.ValidateAsync(package, context, ct);
@@ -94,7 +94,7 @@ namespace Package.Validation.Services
             catch (Exception ex) { throw new PackageValidateException($"Error occurred validating package", ex); }
         }
 
-        private bool OnEntityValidated(PackageEntityReport entityReport)
+        private bool OnEntityValidated(EntityReport entityReport)
         {
             var evnt = EntityValidated;
             if (evnt != null)

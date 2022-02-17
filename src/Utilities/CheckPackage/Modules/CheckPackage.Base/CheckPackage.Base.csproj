@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\CheckPackage.Configuration.Json\CheckPackage.Configuration.csproj" />
+    <ProjectReference Include="..\..\CheckPackage.Core\CheckPackage.Core.csproj" />
+    <ProjectReference Include="..\..\CheckPackage.Dependencies\CheckPackage.Dependencies.csproj" />
+    <ProjectReference Include="..\..\CheckPackage.PackageBuilding\CheckPackage.PackageBuilding.csproj" />
+    <ProjectReference Include="..\..\CheckPackage.PackageOutput\CheckPackage.PackageOutput.csproj" />
+    <ProjectReference Include="..\..\CheckPackage.PackageValidation\CheckPackage.PackageValidation.csproj" />
+  </ItemGroup>
+
+</Project>

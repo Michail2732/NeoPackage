@@ -9,7 +9,7 @@ namespace CheckPackage.Core.Checks
     public abstract class PackageCheckCommand: ICheckCommand<Package_>
     {
         public string Message { get; }
-        public LogicalOperator Logic { get; set; }
+        public Logical Logic { get; set; }
         public bool Inverse { get; set; }
 
         protected PackageCheckCommand(string message)

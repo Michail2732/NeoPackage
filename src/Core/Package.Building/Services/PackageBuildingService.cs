@@ -15,15 +15,15 @@ namespace Package.Building.Services
 {
     public class PackageBuildingService : IPackageBuildingService
     {
-        private readonly IPackageEntityBasisBuilder _basisBuilder;
-        private readonly IPackageEntityBuilder _entityBuilder;
+        private readonly IEntityBasisBuilder _basisBuilder;
+        private readonly IEntityBuilder _entityBuilder;
         private readonly IPackageBuilder _packageBuilder;        
         private readonly IEntityGrouper _entityGrouper;
         private readonly IPackageContextBuilder _contextBuilder;
 
         public event EventHandler<LevelBuildEventArgs>? LevelBuilded;
 
-        public PackageBuildingService(IPackageEntityBasisBuilder basisBuilder, IPackageEntityBuilder entityBuilder,
+        public PackageBuildingService(IEntityBasisBuilder basisBuilder, IEntityBuilder entityBuilder,
             IPackageBuilder packageBuilder, IEntityGrouper entityGrouper, IPackageContextBuilder contextBuilder)
         {
             _basisBuilder = basisBuilder ?? throw new ArgumentNullException(nameof(basisBuilder));
@@ -39,8 +39,20 @@ namespace Package.Building.Services
             {
                 PackageContext context = _contextBuilder.Build();
                 var entities = _basisBuilder.Build(context)?.Select(a => PackageEntityFactory.
-                        Create(a, new List<PackageEntity>())).ToList() ?? new List<PackageEntity>();
+                        Create(a, new List<Entity_>())).ToList() ?? new List<Entity_>();
                 uint level = 0;
+                List<Entity_> basisEntities = new List<Entity_>();
+                if (!OnLevelBuilded(entities, level++) && entities.Count > 0)
+                {                    
+                    foreach (var basisEntity in entities)
+                    {
+                        basisEntities.Clear();
+                        basisEntities.Add(basisEntity);
+                        var entityBuildResult = _entityBuilder.Build(basisEntities, level, context);
+                        var entity = PackageEntityFactory.Create(entityBuildResult, basisEntities);
+                        entities.ReplaceItems(basisEntities, entity);
+                    }
+                }                    
                 while (!OnLevelBuilded(entities, level) && entities.Count > 0)
                 {                    
                     var groupedEntities = _entityGrouper.Group(entities, level, context);
@@ -66,8 +78,20 @@ namespace Package.Building.Services
                 PackageContext context = _contextBuilder.Build();
                 var entitiesResults = await _basisBuilder.BuildAsync(context, ct);
                 var entities = entitiesResults.Select(a => PackageEntityFactory.
-                        Create(a, new List<PackageEntity>())).ToList() ?? new List<PackageEntity>();
+                        Create(a, new List<Entity_>())).ToList() ?? new List<Entity_>();
                 uint level = 0;
+                List<Entity_> basisEntities = new List<Entity_>();
+                if (!OnLevelBuilded(entities, level++) && entities.Count > 0)
+                {
+                    foreach (var basisEntity in entities)
+                    {
+                        basisEntities.Clear();
+                        basisEntities.Add(basisEntity);
+                        var entityBuildResult = await _entityBuilder.BuildAsync(basisEntities, level, context, ct);
+                        var entity = PackageEntityFactory.Create(entityBuildResult, basisEntities);
+                        entities.ReplaceItems(basisEntities, entity);
+                    }
+                }
                 while (!OnLevelBuilded(entities, level) && entities.Count > 0)
                 {
                     ct.ThrowIfCancellationRequested();                    
@@ -75,8 +99,7 @@ namespace Package.Building.Services
                     if (groupedEntities == null || !groupedEntities.Any()) break;
                     level++;
                     foreach (var entitiesGroup in groupedEntities)
-                    {                        
-                        var entityResult = await _entityBuilder.BuildAsync(entitiesGroup,  level, context, ct);
+                    {                                                
                         var entityBuildResult = await _entityBuilder.BuildAsync(entitiesGroup, level, context, ct);
                         var entity = PackageEntityFactory.Create(entityBuildResult, entitiesGroup.ToList());
                         entities.ReplaceItems(entitiesGroup, entity);
@@ -89,7 +112,7 @@ namespace Package.Building.Services
         }
         
 
-        private bool OnLevelBuilded(IReadOnlyList<PackageEntity> entities, uint level)
+        private bool OnLevelBuilded(IReadOnlyList<Entity_> entities, uint level)
         {
             var evnt = LevelBuilded;
             bool cancel = false;

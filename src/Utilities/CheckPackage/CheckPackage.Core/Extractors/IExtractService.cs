@@ -8,9 +8,9 @@ namespace CheckPackage.Core.Extractors
 {
     public interface IExtractService
     {
-        public IList<Parameter> Extract(IList<Parameter> source, IEnumerable<ParameterExtractCommand> extracter);
-        public IList<Parameter> Extract(IList<Parameter> source, ParameterExtractCommand extracter);
-        public IList<Parameter> Extract(Parameter source, ParameterExtractCommand extracter);
-        public IList<Parameter> Extract(Parameter source, IEnumerable<ParameterExtractCommand> extracter);
+        public IEnumerable<Parameter> Extract(IEnumerable<Parameter> source, IEnumerable<ParameterExtractCommand> extracter);
+        public IEnumerable<Parameter> Extract(IEnumerable<Parameter> source, ParameterExtractCommand extracter);
+        public IEnumerable<Parameter> Extract(Parameter source, ParameterExtractCommand extracter);
+        public IEnumerable<Parameter> Extract(Parameter source, IEnumerable<ParameterExtractCommand> extracter);
     }
 }

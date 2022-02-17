@@ -8,7 +8,7 @@ namespace CheckPackage.Core.Conditions
 {
     public abstract class PackageConditionCommand : IConditionCommand<Package_>
     {
-        public LogicalOperator Logic { get; set; }
+        public Logical Logic { get; set; }
         public bool Inverse { get; set; }        
 
         public  bool Resolve(Package_ package, PackageContext context)

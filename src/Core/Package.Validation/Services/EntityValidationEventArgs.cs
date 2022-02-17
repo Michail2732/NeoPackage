@@ -7,10 +7,10 @@ namespace Package.Validation.Services
 {
     public class EntityValidationEventArgs
     {
-        public readonly PackageEntityReport Report;
+        public readonly EntityReport Report;
         public bool Cancel { get; set; }
 
-        public EntityValidationEventArgs(PackageEntityReport report)
+        public EntityValidationEventArgs(EntityReport report)
         {
             Report = report ?? throw new ArgumentNullException(nameof(report));
         }

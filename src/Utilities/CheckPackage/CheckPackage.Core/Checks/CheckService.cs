@@ -17,29 +17,29 @@ namespace CheckPackage.Core.Checks
             _contextBuilder = contextBuilder ?? throw new ArgumentNullException(nameof(contextBuilder));
         }
 
-        public Result Check(PackageEntity entity, PackageEntityCheckCommand check)
-            => CheckPrivate(entity, check);
+        public Result Check(Entity_ entity, EntityCheckCommand command)
+            => CheckPrivate(entity, command);
 
-        public Result Check(Package_ package, PackageCheckCommand check)
-            => CheckPrivate(package, check);
+        public Result Check(Package_ package, PackageCheckCommand command)
+            => CheckPrivate(package, command);
 
-        public Result Check(KeyValuePair<string, string> parameter, ParameterCheckCommand check)
-            => CheckPrivate(new Parameter(parameter.Key, parameter.Value), check);
+        public Result Check(KeyValuePair<string, string> parameter, ParameterCheckCommand command)
+            => CheckPrivate(new Parameter(parameter.Key, parameter.Value), command);
 
-        public Result Check(UserParameter parameter, ParameterCheckCommand check)
-            => CheckPrivate(new Parameter(parameter.Id, parameter.Value), check);
+        public Result Check(UserParameter_ parameter, ParameterCheckCommand command)
+            => CheckPrivate(new Parameter(parameter.Id, parameter.Value), command);
 
-        public Result Check(PackageEntity entity, IReadOnlyList<PackageEntityCheckCommand> checks)
-            => CheckPrivate( entity, checks);
+        public Result Check(Entity_ entity, IReadOnlyList<EntityCheckCommand> commands)
+            => CheckPrivate( entity, commands);
 
-        public Result Check(Package_ package, IReadOnlyList<PackageCheckCommand> checks)
-            => CheckPrivate( package, checks);
+        public Result Check(Package_ package, IReadOnlyList<PackageCheckCommand> commands)
+            => CheckPrivate( package, commands);
 
-        public Result Check(KeyValuePair<string, string> parameter, IReadOnlyList<ParameterCheckCommand> checks) 
-            => CheckPrivate( new Parameter(parameter.Key, parameter.Value), checks);
+        public Result Check(KeyValuePair<string, string> parameter, IReadOnlyList<ParameterCheckCommand> commands) 
+            => CheckPrivate( new Parameter(parameter.Key, parameter.Value), commands);
 
-        public Result Check(UserParameter parameter, IReadOnlyList<ParameterCheckCommand> checks) 
-            => CheckPrivate(new Parameter(parameter.Id, parameter.Value), checks);
+        public Result Check(UserParameter_ parameter, IReadOnlyList<ParameterCheckCommand> commands) 
+            => CheckPrivate(new Parameter(parameter.Id, parameter.Value), commands);
 
 
         private Result CheckPrivate<T>(T obj, ICheckCommand<T> check)
@@ -56,8 +56,8 @@ namespace CheckPackage.Core.Checks
         {
             var context = _contextBuilder.Build();
             StringBuilder errorSb = new StringBuilder();
-            if (checks.Count > 0) checks.First().Logic = LogicalOperator.or;
-            bool executedResult = BooleanSolver.Solve(checks.Select(a => new KeyValuePair<LogicalOperator, Func<bool>>
+            if (checks.Count > 0) checks.First().Logic = Logical.or;
+            bool executedResult = BooleanSolver.Solve(checks.Select(a => new KeyValuePair<Logical, Func<bool>>
             (
                 a.Logic,
                 () =>

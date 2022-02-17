@@ -5,7 +5,7 @@ using System.Text;
 
 namespace CheckPackage.Core.Output
 {
-    public abstract class PackageOutputCommand
+    public abstract class PackageOutputCommand : IOutputCommand<Package_>
     {
         public string Message { get; }        
 

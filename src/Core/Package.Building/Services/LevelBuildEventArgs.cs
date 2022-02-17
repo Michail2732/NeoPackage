@@ -7,11 +7,11 @@ namespace Package.Building.Services
 {
     public class LevelBuildEventArgs : EventArgs
     {
-        public IReadOnlyList<PackageEntity> Entities { get; }
+        public IReadOnlyList<Entity_> Entities { get; }
         public uint Level { get; }
         public bool Cancel { get; set; }
 
-        public LevelBuildEventArgs(IReadOnlyList<PackageEntity> entities, uint level)
+        public LevelBuildEventArgs(IReadOnlyList<Entity_> entities, uint level)
         {
             Entities = entities ?? throw new ArgumentNullException(nameof(entities));
             Level = level;

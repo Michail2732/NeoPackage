@@ -3,6 +3,7 @@ using Package.Abstraction.Entities;
 using Package.Abstraction.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace CheckPackage.Core.Selectors
@@ -16,34 +17,34 @@ namespace CheckPackage.Core.Selectors
             _contextBuilder = contextBuilder ?? throw new ArgumentNullException(nameof(contextBuilder));
         }
 
-        public IList<Parameter> Select(IEnumerable<PackageEntity> entities, ParameterSelectCommand selector)
+        public IEnumerable<Parameter> Select(IEnumerable<Entity_> entities, ParameterSelectCommand selector)
         {
             var context = _contextBuilder.Build();
             return selector.Select(entities, context);
         }
 
-        public IList<Parameter> Select(IEnumerable<PackageEntity> entities, IEnumerable<ParameterSelectCommand> selectors)
+        public IEnumerable<Parameter> Select(IEnumerable<Entity_> entities, IEnumerable<ParameterSelectCommand> selectors)
         {
             var context = _contextBuilder.Build();
             List<Parameter> parameters = new List<Parameter>();
             foreach (var selector in selectors)
             {
                 var paramsLocal = selector.Select(entities, context);
-                if (paramsLocal.Count > 0)
+                if (paramsLocal.Count() > 0)
                 parameters.AddRange(paramsLocal);                
             }
             return parameters;
         }
 
-        public IList<Parameter> Select(PackageEntity entity, ParameterSelectCommand selector)
+        public IEnumerable<Parameter> Select(Entity_ entity, ParameterSelectCommand selector)
         {
             var context = _contextBuilder.Build();
-            return selector.Select(new PackageEntity[1] { entity }, context);
+            return selector.Select(new Entity_[1] { entity }, context);
         }
 
-        public IList<Parameter> Select(PackageEntity entity, IEnumerable<ParameterSelectCommand> selectors)
+        public IEnumerable<Parameter> Select(Entity_ entity, IEnumerable<ParameterSelectCommand> selectors)
         {            
-            var entities = new PackageEntity[1] { entity };
+            var entities = new Entity_[1] { entity };
             return Select(entities, selectors);
         }
     }

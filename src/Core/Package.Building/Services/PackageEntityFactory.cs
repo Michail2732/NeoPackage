@@ -9,13 +9,13 @@ namespace Package.Building.Services
 {
     public class PackageEntityFactory
     {
-        public static PackageEntity Create(EntityBuildingResult buildRessult, List<PackageEntity> children)
+        public static Entity_ Create(EntityBuildingResult buildRessult, List<Entity_> children)
         {
-            return new PackageEntity(buildRessult.Id, buildRessult.Name, children,
+            return new Entity_(buildRessult.Id, buildRessult.Name, children,
                 buildRessult.Parameters.Copy(), buildRessult.UserParameters.Copy());
         }
 
-        public static Package_ Create(PackageBuildingResult buildResult, List<PackageEntity> items)
+        public static Package_ Create(PackageBuildingResult buildResult, List<Entity_> items)
         {
             return new Package_(buildResult.Id, buildResult.Name, items);
         }

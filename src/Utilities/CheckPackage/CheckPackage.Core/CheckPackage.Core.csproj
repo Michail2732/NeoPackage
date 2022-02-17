@@ -15,7 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Core\Package.Building\Package.Building.csproj" />
     <ProjectReference Include="..\..\..\Core\Package.Localization\Package.Localization.csproj" />
-    <ProjectReference Include="..\..\..\Core\Package.Resourcing\Package.Resourcing.csproj" />
+    <ProjectReference Include="..\..\..\Core\Package.Resourcing\Package.Repository.csproj" />
     <ProjectReference Include="..\..\..\Core\Package.Validation\Package.Validation.csproj" />
   </ItemGroup>
 

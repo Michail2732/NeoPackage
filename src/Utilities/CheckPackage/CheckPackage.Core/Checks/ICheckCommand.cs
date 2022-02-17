@@ -9,7 +9,7 @@ namespace CheckPackage.Core.Checks
     internal interface ICheckCommand<TItem>
     {
         Result Check(TItem item, PackageContext context);
-        LogicalOperator Logic { get; set; }
+        Logical Logic { get; set; }
         string Message { get; }
     }
 }

@@ -1,12 +1,9 @@
 ﻿using CheckPackage.Core.Checks;
 using CheckPackage.Core.Conditions;
-using CheckPackage.Core.Validation.Extensions;
-using CheckPackage.PackageValidation.Resources;
+using CheckPackage.PackageValidation.Rules;
 using Package.Abstraction.Entities;
 using Package.Validation.Validators;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -26,10 +23,10 @@ namespace CheckPackage.PackageValidation.Validation
 
         public EntityStateResult Validate(Package_ package, PackageContext context)
         {            
-            var packageCheckRules = context.ResourceProvider.GetStorage<PackageCheckRuleResource, string>()
+            var packageCheckRules = context.RepositoryProvider.GetRepository<PackageCheckRule, string>()
                     .Get(a => a.Conditions == null || _conditionService.Resolve(package, a.Conditions));
             StringBuilder sb = new StringBuilder();
-            State state = State.success;            
+            Critical state = Critical.notcritical;            
             foreach (var packageCheckRule in packageCheckRules)
             {
                 var result = _checkService.Check(package, packageCheckRule.Checks);
@@ -45,10 +42,10 @@ namespace CheckPackage.PackageValidation.Validation
         public async Task<EntityStateResult> ValidateAsync(Package_ package, PackageContext context, CancellationToken ct)
         {
             ct.ThrowIfCancellationRequested();
-            var packageCheckRules = await context.ResourceProvider.GetStorage<PackageCheckRuleResource, string>()
+            var packageCheckRules = await context.RepositoryProvider.GetRepository<PackageCheckRule, string>()
                     .GetAsync(a => a.Conditions == null || _conditionService.Resolve(package, a.Conditions), ct);
             StringBuilder sb = new StringBuilder();
-            State state = State.success;
+            Critical state = Critical.notcritical;
             foreach (var packageCheckRule in packageCheckRules)
             {
                 ct.ThrowIfCancellationRequested();

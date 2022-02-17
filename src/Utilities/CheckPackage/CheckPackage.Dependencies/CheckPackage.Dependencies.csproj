@@ -6,4 +6,10 @@
     <LangVersion>8.0</LangVersion>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\Package.Configuration\Package.Configuration.csproj" />
+    <ProjectReference Include="..\..\..\Core\Package.Resourcing\Package.Repository.csproj" />
+    <ProjectReference Include="..\CheckPackage.Configuration.Json\CheckPackage.Configuration.csproj" />
+  </ItemGroup>
+
 </Project>

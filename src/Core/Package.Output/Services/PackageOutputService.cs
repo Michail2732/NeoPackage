@@ -15,15 +15,15 @@ namespace Package.Output.Services
     {
 
         private readonly IPackageOutputer _packageOutputer;
-        private readonly IPackageEntityOutputer _packageEntityOutputer;
-        private readonly IPackageEntityParameterOutputer _parameterOutputer;
-        private readonly IPackageEntityUserParameterOutputer _userParameterOutputer;
+        private readonly IEntityOutputer _packageEntityOutputer;
+        private readonly IParameterOutputer _parameterOutputer;
+        private readonly IUserParameterOutputer _userParameterOutputer;
         private readonly IPackageContextBuilder _contextBuilder;
 
         public event EventHandler<EntityOutputEventArgs>? EntityOutputted;
 
-        public PackageOutputService(IPackageOutputer packageOutputer, IPackageEntityOutputer packageEntityOutputer, 
-            IPackageEntityParameterOutputer parameterOutputer, IPackageEntityUserParameterOutputer userParameterOutputer, 
+        public PackageOutputService(IPackageOutputer packageOutputer, IEntityOutputer packageEntityOutputer, 
+            IParameterOutputer parameterOutputer, IUserParameterOutputer userParameterOutputer, 
             IPackageContextBuilder contextBuilder)
         {
             _packageOutputer = packageOutputer ?? throw new ArgumentNullException(nameof(packageOutputer));
@@ -38,8 +38,8 @@ namespace Package.Output.Services
             try
             {
                 PackageContext context = _contextBuilder.Build();
-                PackageEntityStackEnumerable entityEnumerable = new PackageEntityStackEnumerable(package.Entities);
-                List<PackageEntityReport> entitiesReports = new List<PackageEntityReport>();
+                EntityStackEnumerable entityEnumerable = new EntityStackEnumerable(package.Entities);
+                List<EntityReport> entitiesReports = new List<EntityReport>();
                 foreach (var entity in entityEnumerable)                
                 {                    
                     var entityResult = _packageEntityOutputer.Output(entity, context);
@@ -55,8 +55,9 @@ namespace Package.Output.Services
                         var userParameterResult = _userParameterOutputer.Output(userParameter.Value, context);
                         userParameterResults.Add(userParameterResult);
                     }
-                    entitiesReports.Add(new PackageEntityReport(parameterResults, userParameterResults, entityResult));
-                    if (OnEntityOutputed(entitiesReports.Last())) break;                    
+                    entitiesReports.Add(new EntityReport(parameterResults, userParameterResults, entityResult));
+                    bool isCancel = OnEntityOutputed(entitiesReports.Last());
+                    if (isCancel) break;                    
                 }
                 var packageResult = _packageOutputer.Output(package, context);
                 return new PackageReport(entitiesReports, packageResult);
@@ -69,8 +70,8 @@ namespace Package.Output.Services
             try
             {
                 PackageContext context = _contextBuilder.Build();
-                PackageEntityStackEnumerable entityEnumerable = new PackageEntityStackEnumerable(package.Entities);
-                List<PackageEntityReport> entitiesReports = new List<PackageEntityReport>();
+                EntityStackEnumerable entityEnumerable = new EntityStackEnumerable(package.Entities);
+                List<EntityReport> entitiesReports = new List<EntityReport>();
                 foreach (var entity in entityEnumerable)
                 {
                     ct.ThrowIfCancellationRequested();                    
@@ -87,8 +88,9 @@ namespace Package.Output.Services
                         var userParameterResult = await _userParameterOutputer.OutputAsync(userParameter.Value, context, ct);
                         userParameterResults.Add(userParameterResult);
                     }
-                    entitiesReports.Add(new PackageEntityReport(parameterResults, userParameterResults, entityResult));
-                    if (OnEntityOutputed(entitiesReports.Last())) break;                    
+                    entitiesReports.Add(new EntityReport(parameterResults, userParameterResults, entityResult));
+                    bool isCancel = OnEntityOutputed(entitiesReports.Last());
+                    if (isCancel) break;                    
                 }
                 var packageResult = await _packageOutputer.OutputAsync(package, context, ct);
                 return new PackageReport(entitiesReports, packageResult);
@@ -96,7 +98,7 @@ namespace Package.Output.Services
             catch (Exception ex) { throw new PackageOutputException($"Error occurred outputting package", ex); }
         }
 
-        private bool OnEntityOutputed(PackageEntityReport entityReport)
+        private bool OnEntityOutputed(EntityReport entityReport)
         {
             var evnt = EntityOutputted;
             if (evnt != null)

@@ -9,7 +9,7 @@ namespace CheckPackage.Core.Checks
     public abstract class ParameterCheckCommand: ICheckCommand<Parameter>
     {
         public string Message { get; }
-        public LogicalOperator Logic { get; set; }
+        public Logical Logic { get; set; }
         public bool Inverse { get; set; }
 
         protected ParameterCheckCommand(string message)

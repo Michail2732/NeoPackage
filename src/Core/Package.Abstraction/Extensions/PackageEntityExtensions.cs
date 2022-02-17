@@ -8,9 +8,9 @@ namespace Package.Abstraction.Extensions
 {
     public static class PackageEntityExtensions
     {
-        public static uint GetHeigtEntity(this PackageEntity packageEntity)
+        public static uint GetHeigtEntity(this Entity_ packageEntity)
         {
-            if (packageEntity == null) return 0;
+            if (packageEntity == null || packageEntity.Children.Count == 0) return 0;
             return 1 + packageEntity.Children.Max(a => a.GetHeigtEntity());
         }
     }

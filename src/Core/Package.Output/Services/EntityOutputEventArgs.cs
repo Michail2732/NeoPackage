@@ -7,10 +7,10 @@ namespace Package.Output.Services
 {
     public class EntityOutputEventArgs: EventArgs
     {
-        public readonly PackageEntityReport Report;
+        public readonly EntityReport Report;
         public bool Cancel { get; set; }
 
-        public EntityOutputEventArgs(PackageEntityReport report)
+        public EntityOutputEventArgs(EntityReport report)
         {
             Report = report ?? throw new ArgumentNullException(nameof(report));
         }

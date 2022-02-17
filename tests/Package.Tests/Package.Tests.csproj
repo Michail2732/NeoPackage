@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>    
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Integration\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.0.0" />
+    <PackageReference Include="NSubstitute" Version="4.3.0" />
+    <PackageReference Include="NUnit" Version="3.13.2" />
+    <PackageReference Include="NUnit.ConsoleRunner" Version="3.14.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="4.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Core\Package.Abstraction\Package.Abstraction.csproj" />
+    <ProjectReference Include="..\..\src\Core\Package.Building\Package.Building.csproj" />
+    <ProjectReference Include="..\..\src\Core\Package.Configuration\Package.Configuration.csproj" />
+    <ProjectReference Include="..\..\src\Core\Package.Output\Package.Output.csproj" />
+    <ProjectReference Include="..\..\src\Core\Package.Resourcing\Package.Repository.csproj" />
+    <ProjectReference Include="..\..\src\Core\Package.Validation\Package.Validation.csproj" />
+  </ItemGroup>
+
+</Project>

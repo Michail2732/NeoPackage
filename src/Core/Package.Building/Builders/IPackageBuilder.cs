@@ -9,7 +9,7 @@ namespace Package.Building.Builders
 {
     public interface IPackageBuilder
     {
-        Task<PackageBuildingResult> BuildAsync(IEnumerable<PackageEntity> entites, PackageContext context, CancellationToken ct);
-        PackageBuildingResult Build(IEnumerable<PackageEntity> entities, PackageContext context);
+        Task<PackageBuildingResult> BuildAsync(IEnumerable<Entity_> entites, PackageContext context, CancellationToken ct);
+        PackageBuildingResult Build(IEnumerable<Entity_> entities, PackageContext context);
     }
 }

@@ -1,23 +1,23 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Package.Resourcing.Resources;
+using Package.Repository.Services;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Package.Resourcing.Dependency
+namespace Package.Repository.Dependency
 {
     public static class SeviceColletionExtensions
     {
-        public static ResourceStoragesBuilder AddResourceStorages(this IServiceCollection collection)
+        public static RepositoriesProviderBuilder AddRepositories(this IServiceCollection collection)
         {            
             var provider = collection.BuildServiceProvider();
-            ResourceStoragesBuilder? resourceBuilder = provider.GetService<ResourceStoragesBuilder>();
-            if (resourceBuilder == null)
+            RepositoriesProviderBuilder? repositoriesBuilder = provider.GetService<RepositoriesProviderBuilder>();
+            if (repositoriesBuilder == null)
             {
-                resourceBuilder = new ResourceStoragesBuilder(collection);
-                collection.AddSingleton(resourceBuilder);
+                repositoriesBuilder = new RepositoriesProviderBuilder(collection);
+                collection.AddSingleton(repositoriesBuilder);
             }
-            return resourceBuilder;
+            return repositoriesBuilder;
         }
 
     }

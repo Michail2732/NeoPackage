@@ -8,12 +8,12 @@ namespace Package.Building.Builders
     public readonly struct EntityBuildingResult
     {
         public readonly IReadOnlyDictionary<string, string>? Parameters;
-        public readonly IReadOnlyDictionary<string, UserParameter>? UserParameters;
+        public readonly IReadOnlyDictionary<string, UserParameter_>? UserParameters;
         public readonly string Name;
         public readonly string Id;
 
         public EntityBuildingResult(IReadOnlyDictionary<string, string> parameters, 
-            IReadOnlyDictionary<string, UserParameter> userParameters, string name, string id)
+            IReadOnlyDictionary<string, UserParameter_> userParameters, string name, string id)
         {
             Parameters = parameters ?? throw new ArgumentNullException(nameof(parameters));
             UserParameters = userParameters ?? throw new ArgumentNullException(nameof(userParameters));
