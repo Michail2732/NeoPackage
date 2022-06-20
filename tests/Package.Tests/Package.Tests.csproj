@@ -1,11 +1,11 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>    
+    <TargetFramework>netcoreapp6.0</TargetFramework>    
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Integration\" />
+    <Folder Include="Unit" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,12 +17,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Core\Package.Abstraction\Package.Abstraction.csproj" />
-    <ProjectReference Include="..\..\src\Core\Package.Building\Package.Building.csproj" />
-    <ProjectReference Include="..\..\src\Core\Package.Configuration\Package.Configuration.csproj" />
-    <ProjectReference Include="..\..\src\Core\Package.Output\Package.Output.csproj" />
-    <ProjectReference Include="..\..\src\Core\Package.Resourcing\Package.Repository.csproj" />
-    <ProjectReference Include="..\..\src\Core\Package.Validation\Package.Validation.csproj" />
+    <ProjectReference Include="..\..\src\Package.Abstraction\Package.Abstraction.csproj" />
+    <ProjectReference Include="..\..\src\Package.Building\Package.Building.csproj" />
+    <ProjectReference Include="..\..\src\Package.Checking\Package.Checking.csproj" />
+    <ProjectReference Include="..\..\src\Package.Export\Package.Export.csproj" />
+    <ProjectReference Include="..\..\src\Package.Utility\Package.Utility.csproj" />
   </ItemGroup>
 
 </Project>
