@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.1</TargetFramework>
+        <Nullable>enable</Nullable>
+        <LangVersion>8.0</LangVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\Package.Domain\Package.Domain.csproj" />
+      <ProjectReference Include="..\Package.Infrastructure\Package.Infrastructure.csproj" />
+      <ProjectReference Include="..\Package.Utility\Package.Utility.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleToAttribute">
+            <_Parameter1>DynamicProxyGenAssembly2</_Parameter1>
+        </AssemblyAttribute>
+        <AssemblyAttribute Include="System.Runtime.CompilerServices.InternalsVisibleTo">
+            <_Parameter1>Package.Tests</_Parameter1>
+        </AssemblyAttribute>
+    </ItemGroup>
+
+    <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+        <Exec Command="mkdir -p $(SolutionDir)../$(OutDir)&#xA;cp $(TargetPath)  $(SolutionDir)../$(OutDir)&#xA;cp $(TargetDir)$(ProjectName).pdb  $(SolutionDir)../$(OutDir)&#xA;cp $(TargetDir)$(ProjectName).deps.json  $(SolutionDir)../$(OutDir)" />
+    </Target>
+
+</Project>
